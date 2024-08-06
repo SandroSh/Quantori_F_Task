@@ -6,12 +6,15 @@ export const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("src/assets/backgroundImage2.png");
+  background-repeat:no-repeat;
+  background-size:cover;
 `;
 
 export const Form = styled.form`
   margin: 20px;
   background-color: #ffffff;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 25px rgba(255, 255, 255, 0.7);
   width: 350px;
   display: flex;
   justify-content: center;
@@ -32,7 +35,7 @@ export const Form = styled.form`
     border: 0;
     outline: none;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
     box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
@@ -57,7 +60,7 @@ export const InputDiv = styled.div`
     background: transparent;
     padding-left: 10px;
     &:focus {
-      border: 1.5px solid #2d79f3;
+      border: 1.5px solid black;
     }
 
     &:focus ~ label,
@@ -65,7 +68,7 @@ export const InputDiv = styled.div`
       top: 5px;
       left: 5px;
       font-size: 12px;
-      color: #2d79f3;
+      color: #000;
       background-color: #ffffff;
       padding-left: 5px;
       padding-right: 5px;
