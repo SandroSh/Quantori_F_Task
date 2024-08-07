@@ -1,5 +1,7 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import { Form, InputDiv, MainContainer } from './Login.style'
+import { useNavigate } from 'react-router';
+
 type Inputs = {
   name: string;
   password: string;
@@ -18,7 +20,7 @@ interface User {
 const Login = () => {
   const [user, setUser] = useState<User>();
   const [inputValues, setInputValues] = useState<Inputs>({ name: '', password: '' });
-
+  const navigate = useNavigate();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
     if (e.target.type == 'text') {
@@ -31,6 +33,9 @@ const Login = () => {
 
   const handleClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     e.preventDefault();
+
+    if(!inputValues.name || !inputValues.password) return;
+
     console.log("Clicked")
     logUser();
   }
@@ -48,6 +53,7 @@ const Login = () => {
 
     setUser(response);
     console.log(user)
+    navigate('/');
   }
   return (
     <MainContainer>
