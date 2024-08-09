@@ -1,26 +1,22 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
-import { Form, InputDiv, MainContainer } from './Login.style'
+import { Button, Form, InputDiv, MainContainer } from './Login.style'
 import { useNavigate } from 'react-router';
+import { createUser } from '../../state/user/userSlice';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
+import { navbarData } from '../../constants/data';
 
 type Inputs = {
   name: string;
   password: string;
 }
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  image: string;
-  token: string;
-  refreshToken: string;
-}
+
 const Login = () => {
-  const [user, setUser] = useState<User>();
   const [inputValues, setInputValues] = useState<Inputs>({ name: '', password: '' });
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
     if (e.target.type == 'text') {
@@ -34,12 +30,14 @@ const Login = () => {
   const handleClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     e.preventDefault();
 
-    if(!inputValues.name || !inputValues.password) return;
-
-    console.log("Clicked")
+    if (!inputValues.name || !inputValues.password) {
+      toast.error('Please fill inputs');
+      return;
+    }
     logUser();
   }
 
+  // Login user and creating state of recieved data
   const logUser = async () => {
     const response = await fetch('https://dummyjson.com/auth/login', {
       method: 'POST',
@@ -49,14 +47,23 @@ const Login = () => {
         password: inputValues.password,
         expiresInMins: 60,
       })
-    }).then(res => res.json());
+    }).then(res => {
+      if (res.status != 200) {
+        toast.error('Incorrect username or password. Please try again.');
+        return;
+      }
+      return res.json()
+    });
+    if (!response) return;
 
-    setUser(response);
-    console.log(user)
+    dispatch(createUser(response));
+    toast.success('Successfully Logged in!');
+    navbarData[0].isActive = true;
     navigate('/');
+
   }
   return (
-    <MainContainer>
+    <MainContainer $imageUrl={'src/assets/backgroundImage2.png'}>
       <Form>
         <p>Login</p>
         <InputDiv>
@@ -64,11 +71,12 @@ const Login = () => {
           <label>Enter Username</label>
         </InputDiv>
         <InputDiv>
-          <input required type="password" onChange={(e) => handleChange(e)}/>
+          <input required type="password" onChange={(e) => handleChange(e)} />
           <label >Enter Password</label>
         </InputDiv>
-        <button onClick={(e) => handleClick(e)}>Sign in</button>
+        <Button onClick={(e) => handleClick(e)}>Sign in</Button>
       </Form>
+
     </MainContainer>
   )
 }

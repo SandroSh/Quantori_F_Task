@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.div<{ $imageUrl: string }>`
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("src/assets/backgroundImage2.png");
-  background-repeat:no-repeat;
-  background-size:cover;
+  background-image: url(${(state) => state.$imageUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 `;
 
 export const Form = styled.form`
@@ -26,24 +27,23 @@ export const Form = styled.form`
     font-size: 28px;
     font-weight: 800;
   }
-
-  button {
-    margin-top: 30px;
-    height: 55px;
-    background: #f2f2f2;
-    border-radius: 11px;
-    border: 0;
-    outline: none;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
-    box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
-    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-    cursor: pointer;
-    &:hover {
-      box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
-    }
+`;
+export const Button = styled.button`
+  margin-top: 30px;
+  height: 55px;
+  background: #f2f2f2;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
+  box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
   }
 `;
 
