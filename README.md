@@ -1,6 +1,5 @@
 # Authentication App
-Live Link: 
-
+Simple Authentication app integrated with dummy service
 ## Features
 * Responsive Design: Adapts to different screen sizes.
 * State Management: Efficiently manages global state across the application.
