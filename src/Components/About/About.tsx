@@ -1,9 +1,9 @@
 
 import { MainContainer } from '../Login/Login.style'
-
+import BackgroundImage from '../../assets/background2.png'
 const About = () => {
   return (
-    <MainContainer $imageUrl={'src/assets/background2.png'}>
+    <MainContainer $imageUrl={BackgroundImage}>
       
     </MainContainer>
   )

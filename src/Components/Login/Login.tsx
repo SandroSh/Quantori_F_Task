@@ -5,7 +5,7 @@ import { createUser } from '../../state/user/userSlice';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { navbarData } from '../../constants/data';
-
+import BackgroundImage from '../../assets/backgroundImage2.png'
 type Inputs = {
   name: string;
   password: string;
@@ -63,7 +63,7 @@ const Login = () => {
 
   }
   return (
-    <MainContainer $imageUrl={'src/assets/backgroundImage2.png'}>
+    <MainContainer $imageUrl={BackgroundImage}>
       <Form>
         <p>Login</p>
         <InputDiv>
