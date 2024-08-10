@@ -7,7 +7,7 @@ Simple Authentication app integrated with dummy service
 * Smooth and intuitive navigation.
 * Burger menu for mobile navigation.
 * Toasts for user friendly interface.
-* Protected routes
+* Protected routes.
   
 ## Used Technologies
 * Typescript
